@@ -39,7 +39,7 @@ public class SaverEventHandler {
 
                 boolean writeStatus = JsonUtil.write(EntityPlayer.getUUID(player.getGameProfile()).toString(), player.posX, player.posY, player.posZ);
                 if(writeStatus) {
-                    HousingSaver.buffer.sendPM(player.getName(), "Location saved! Ask bugfroggy if you need your location loaded back.");
+                    HousingSaver.buffer.sendPM(player.getName(), "Location saved! Let bugfroggy know when you need your location loaded back.");
                 } else {
                     HousingSaver.buffer.sendPM(player.getName(), "There was an error saving your location!");
                 }
