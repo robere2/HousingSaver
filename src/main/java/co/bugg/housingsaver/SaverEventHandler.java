@@ -1,7 +1,7 @@
 package co.bugg.housingsaver;
 
 import co.bugg.housingsaver.util.MessageBuilder;
-import co.bugg.housingsaver.util.PublicMessageHandler;
+import co.bugg.housingsaver.util.PublicMessageBuffer;
 import co.bugg.housingsaver.util.json.JsonUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
@@ -35,13 +35,13 @@ public class SaverEventHandler {
 
                 IChatComponent component = MessageBuilder.buildSuccess("Writing save for " + player.getName() + "...");
                 MessageBuilder.send(component);
-                PublicMessageHandler.sendPM(player.getName(), "Saving your location...");
+                HousingSaver.buffer.sendPM(player.getName(), "Saving your location...");
 
                 boolean writeStatus = JsonUtil.write(EntityPlayer.getUUID(player.getGameProfile()).toString(), player.posX, player.posY, player.posZ);
                 if(writeStatus) {
-                    PublicMessageHandler.sendPM(player.getName(), "Location saved! Ask bugfroggy if you need your location loaded back.");
+                    HousingSaver.buffer.sendPM(player.getName(), "Location saved! Ask bugfroggy if you need your location loaded back.");
                 } else {
-                    PublicMessageHandler.sendPM(player.getName(), "There was an error saving your location!");
+                    HousingSaver.buffer.sendPM(player.getName(), "There was an error saving your location!");
                 }
             }
         }

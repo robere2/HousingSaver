@@ -1,6 +1,7 @@
 package co.bugg.housingsaver;
 
 import co.bugg.housingsaver.commands.SaverToggleCommand;
+import co.bugg.housingsaver.util.PublicMessageBuffer;
 import co.bugg.housingsaver.util.json.JsonUtil;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
@@ -19,11 +20,15 @@ public class HousingSaver {
     // Whether the saver is toggled on or not
     public static boolean toggle = false;
 
+    public static PublicMessageBuffer buffer = new PublicMessageBuffer();
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         SaverEventHandler handler = new SaverEventHandler();
+
         MinecraftForge.EVENT_BUS.register(handler);
+        MinecraftForge.EVENT_BUS.register(buffer);
 
         JsonUtil.createDir();
     }
