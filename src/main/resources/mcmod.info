@@ -1,0 +1,15 @@
+[
+{
+  "modid": "housingsaver",
+  "name": "Housing Saver",
+  "description": "Mod that will watch for messages in your Housing chat in order to save their position.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["bugfroggy"],
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
