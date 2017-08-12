@@ -1,20 +1,16 @@
 package co.bugg.housingsaver.util.json;
 
+import co.bugg.housingsaver.HousingSaver;
 import co.bugg.housingsaver.util.MessageBuilder;
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.google.gson.Gson;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
 
 import java.io.File;
 import java.io.IOException;
 
 public class JsonUtil {
     private static final Gson gson = new Gson();
-    public static final String path = "housingsaver/";
-    public static final String fullPath = path + EntityPlayer.getUUID(Minecraft.getMinecraft().thePlayer.getGameProfile()) + "/";
-
 
     /**
      * Reads a player's file to get their last save coordinates
@@ -25,7 +21,7 @@ public class JsonUtil {
         // Parse the Json file into a string
         String json = null;
         try {
-            json = Files.toString(new File(fullPath + uuid + ".json"), Charsets.UTF_8);
+            json = Files.toString(new File(HousingSaver.fullPath + uuid + ".json"), Charsets.UTF_8);
             System.out.println("Saving user " + uuid + "'s coordinates");
         } catch (IOException e) {
             String err = "Failed saving coordinates for " + uuid;
@@ -47,7 +43,7 @@ public class JsonUtil {
      * @param z Z coordinate
      */
     public static boolean write(String uuid, double x, double y, double z) {
-        File file = new File(fullPath + uuid + ".json");
+        File file = new File(HousingSaver.fullPath + uuid + ".json");
 
         // Create the file if it doesn't exist already
         if(!file.exists() && !file.isDirectory()) {
