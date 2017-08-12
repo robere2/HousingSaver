@@ -16,8 +16,8 @@ import java.util.regex.Pattern;
 
 public class SaverEventHandler {
 
-    // Regex pattern matching any messages from players that say "!test"
-    private static final Pattern pattern = Pattern.compile("^<([A-Za-z0-9_]{1,16})> !save");
+    // Regex pattern matching any messages from players that say "!save"
+    private static final Pattern pattern = Pattern.compile("^From (?:\\[[A-Z+]*] )?([A-Za-z0-9_]{1,16}): !save$");
 
     @SubscribeEvent
     public void onChatReceivedEvent(ClientChatReceivedEvent event) {
