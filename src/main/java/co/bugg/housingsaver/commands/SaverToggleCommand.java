@@ -27,7 +27,7 @@ public class SaverToggleCommand implements ICommand {
     public List<String> getCommandAliases() {
         List<String> aliases = new ArrayList<>();
         aliases.add("st");
-        aliases.add("saver");
+        aliases.add("ht");
 
         return aliases;
     }
