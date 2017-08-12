@@ -1,11 +1,15 @@
 package co.bugg.housingsaver.util;
 
+import co.bugg.housingsaver.HousingSaver;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.ArrayList;
 
+/**
+ * Class for handling messages sent publicly to avoid getting shut down by the spam filter
+ */
 public class PublicMessageBuffer {
 
     // How many ticks between running commands
@@ -24,17 +28,21 @@ public class PublicMessageBuffer {
     }
 
     @SubscribeEvent
-    public void onGameTick(TickEvent.ClientTickEvent event) {
-        tickCount++;
-        // Runs every tickDelay ticks
-        if(tickCount > tickDelay) {
-            tickCount = 0;
-            String nextMessage = buffer.get(0);
-            Minecraft.getMinecraft().thePlayer.sendChatMessage(nextMessage);
+    public void onGameTick(TickEvent.ServerTickEvent event) {
+        if (HousingSaver.onHypixel) {
+            tickCount++;
+            // Runs every tickDelay ticks
+            if (tickCount > tickDelay) {
+                tickCount = 0;
+                // Only continue with emptying the buffer if it isn't already empty
+                if(!buffer.isEmpty()) {
+                    String nextMessage = buffer.get(0);
+                    Minecraft.getMinecraft().thePlayer.sendChatMessage(nextMessage);
 
-            // Remove the message from the buffer
-            buffer.remove(0);
+                    // Remove the message from the buffer
+                    buffer.remove(0);
+                }
+            }
         }
     }
-
 }
