@@ -21,8 +21,8 @@ public class SaverEventHandler {
 
     @SubscribeEvent
     public void onChatReceivedEvent(ClientChatReceivedEvent event) {
-        // This should only be run if currently logged onto the Hypixel Network.
-        if(HousingSaver.onHypixel) {
+        // This should only be run if currently logged onto the Hypixel Network & the mod is enabled.
+        if(HousingSaver.onHypixel && HousingSaver.toggle) {
             Matcher matcher = pattern.matcher(event.message.getUnformattedText());
             if (matcher.find()) {
                 String playerName = matcher.group(1);
