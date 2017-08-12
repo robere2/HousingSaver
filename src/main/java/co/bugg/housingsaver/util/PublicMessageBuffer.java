@@ -37,7 +37,6 @@ public class PublicMessageBuffer {
             tickCount++;
             // Runs every tickDelay ticks
             if (tickCount > tickDelay) {
-                System.out.println("tickOnce");
                 tickCount = 0;
                 // Only continue with emptying the buffer if it isn't already empty
                 if(!buffer.isEmpty()) {
