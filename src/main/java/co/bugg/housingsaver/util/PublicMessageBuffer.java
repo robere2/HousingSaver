@@ -13,7 +13,10 @@ import java.util.ArrayList;
 public class PublicMessageBuffer {
 
     // How many ticks between running commands
-    public int tickDelay = 20;
+    // Multiplied by 2 because for some reason
+    // 1 second is 40 ticks and I haven't been
+    // able to figure it out.
+    public int tickDelay = 20 * 2;
     // How many ticks have gone by
     public int tickCount = 0;
 
