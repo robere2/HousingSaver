@@ -17,10 +17,11 @@ public class PublicMessageBuffer {
     // How many ticks have gone by
     public int tickCount = 0;
 
-    public ArrayList<String> buffer;
+    public ArrayList<String> buffer = new ArrayList<>();
 
     public void send(String message) {
         buffer.add(message);
+        System.out.println("New bufffer: " + buffer.toString());
     }
 
     public void sendPM(String user, String message) {
@@ -28,15 +29,17 @@ public class PublicMessageBuffer {
     }
 
     @SubscribeEvent
-    public void onGameTick(TickEvent.ServerTickEvent event) {
+    public void onGameTick(TickEvent.ClientTickEvent event) {
         if (HousingSaver.onHypixel) {
             tickCount++;
             // Runs every tickDelay ticks
             if (tickCount > tickDelay) {
+                System.out.println("tickOnce");
                 tickCount = 0;
                 // Only continue with emptying the buffer if it isn't already empty
                 if(!buffer.isEmpty()) {
                     String nextMessage = buffer.get(0);
+                    System.out.println("Sending message: " + nextMessage);
                     Minecraft.getMinecraft().thePlayer.sendChatMessage(nextMessage);
 
                     // Remove the message from the buffer
