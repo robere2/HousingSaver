@@ -22,10 +22,15 @@ public class SaverEventHandler {
 
     @SubscribeEvent
     public void onChatReceivedEvent(ClientChatReceivedEvent event) {
+
         // This should only be run if currently logged onto the Hypixel Network & the mod is enabled.
         if(HousingSaver.onHypixel && HousingSaver.toggle) {
             Matcher matcher = pattern.matcher(event.message.getUnformattedText());
             if (matcher.find()) {
+                // Send the chat message before other chat messages are sent (this event fires before the message is posted)
+                event.setCanceled(true);
+                MessageBuilder.send(event.message);
+
                 String playerName = matcher.group(1);
                 System.out.println("Matches from " + playerName);
 

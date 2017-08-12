@@ -30,7 +30,8 @@ public class HousingSaver {
         MinecraftForge.EVENT_BUS.register(handler);
         MinecraftForge.EVENT_BUS.register(buffer);
 
-        JsonUtil.createDir();
+        JsonUtil.createDir(JsonUtil.path);
+        JsonUtil.createDir(JsonUtil.fullPath);
     }
 
     @EventHandler

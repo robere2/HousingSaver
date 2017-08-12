@@ -4,13 +4,16 @@ import co.bugg.housingsaver.util.MessageBuilder;
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.google.gson.Gson;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 
 import java.io.File;
 import java.io.IOException;
 
 public class JsonUtil {
     private static final Gson gson = new Gson();
-    private static final String path = "housingsaver/";
+    public static final String path = "housingsaver/";
+    public static final String fullPath = path + EntityPlayer.getUUID(Minecraft.getMinecraft().thePlayer.getGameProfile()) + "/";
 
 
     /**
@@ -22,7 +25,7 @@ public class JsonUtil {
         // Parse the Json file into a string
         String json = null;
         try {
-            json = Files.toString(new File(path + uuid + ".json"), Charsets.UTF_8);
+            json = Files.toString(new File(fullPath + uuid + ".json"), Charsets.UTF_8);
             System.out.println("Saving user " + uuid + "'s coordinates");
         } catch (IOException e) {
             String err = "Failed saving coordinates for " + uuid;
@@ -44,7 +47,7 @@ public class JsonUtil {
      * @param z Z coordinate
      */
     public static boolean write(String uuid, double x, double y, double z) {
-        File file = new File(path + uuid + ".json");
+        File file = new File(fullPath + uuid + ".json");
 
         // Create the file if it doesn't exist already
         if(!file.exists() && !file.isDirectory()) {
@@ -89,18 +92,18 @@ public class JsonUtil {
     /**
      * Creates the housing saver directory if it doesn't exist already. Runs at preInit
      */
-    public static void createDir() {
-        File dir = new File(path);
+    public static void createDir(String dirPath) {
+        File dir = new File(dirPath);
 
         if(!dir.isDirectory()) {
             boolean success = dir.mkdir();
 
             if(success) {
-                System.out.println("Created Housing Saver directory.");
+                System.out.println("Created directory " + dirPath + ".");
             } else {
-                System.out.println("------------------------------------------------------------");
-                System.out.println("UNABLE TO CREATE HOUSING SAVER DIRECTORY! MOD WILL NOT WORK.");
-                System.out.println("------------------------------------------------------------");
+                System.out.println("-----------------------------------------------");
+                System.out.println("UNABLE TO CREATE DIRECTORY! MOD MIGHT NOT WORK.");
+                System.out.println("-----------------------------------------------");
             }
         }
     }
