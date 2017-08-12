@@ -43,14 +43,15 @@ public class JsonUtil {
      * @param y Y coordinate
      * @param z Z coordinate
      */
-    public static void write(String uuid, double x, double y, double z) {
+    public static boolean write(String uuid, double x, double y, double z) {
         File file = new File(path + uuid + ".json");
 
         // Create the file if it doesn't exist already
         if(!file.exists() && !file.isDirectory()) {
             System.out.println("Created new file for " + uuid);
             try {
-                if(file.createNewFile()) {
+                boolean createStatus = file.createNewFile();
+                if(createStatus) {
                     System.out.println("Created new file for user " + uuid);
                 } else {
                     System.out.println("Didn't create file for user " + uuid + ": File exists");
@@ -61,6 +62,7 @@ public class JsonUtil {
                 System.out.println(err);
 
                 e.printStackTrace();
+                return false;
             }
         }
 
@@ -79,7 +81,9 @@ public class JsonUtil {
             MessageBuilder.send(MessageBuilder.buildError(err));
             System.out.println(err);
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     /**
