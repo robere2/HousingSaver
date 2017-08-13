@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * Utility class that helps with parsing and creating JSON save files
+ */
 public class JsonUtil {
     private static final Gson gson = new Gson();
 

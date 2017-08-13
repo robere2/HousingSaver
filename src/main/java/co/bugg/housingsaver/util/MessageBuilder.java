@@ -7,14 +7,23 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 
 /**
- * Class for building chat messages
- * Complicated messages require their own function ideally
+ * Class for building (and sending) new chat messages
  */
 public class MessageBuilder {
+    /**
+     * Basic function that builds a red chat message
+     * @param error Message to be sent
+     * @return IChatComponent of the message
+     */
     public static IChatComponent buildError(String error) {
         return build(error, EnumChatFormatting.RED);
     }
 
+    /**
+     * Basic function that builds a green chat message
+     * @param msg Message to be sent
+     * @return IChatComponent of the message
+     */
     public static IChatComponent buildSuccess(String msg) {
         return build(msg, EnumChatFormatting.GREEN);
     }
@@ -23,6 +32,7 @@ public class MessageBuilder {
      * Basic simple message constructor
      * @param msg Message to be sent
      * @param code Color code for the message.
+     * @return IChatComponent of the message
      */
     public static IChatComponent build(String msg, EnumChatFormatting code) {
         IChatComponent component = new ChatComponentText(msg);

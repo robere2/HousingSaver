@@ -20,13 +20,23 @@ public class PublicMessageBuffer {
     // How many ticks have gone by
     public int tickCount = 0;
 
+    // The current buffer of chat messages to be sent out
     public ArrayList<String> buffer = new ArrayList<>();
 
+    /**
+     *  Add the passed message to the chat buffer
+     * @param message Message to be added
+     */
     public void send(String message) {
         buffer.add(message);
         System.out.println("New bufffer: " + buffer.toString());
     }
 
+    /**
+     * Basic function to simplify sending PMs
+     * @param user User the PM should be sent to (Name or UUID)
+     * @param message Message to be sent
+     */
     public void sendPM(String user, String message) {
         send("/msg " + user + " " + message);
     }

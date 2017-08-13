@@ -14,6 +14,9 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The mod's main event handler
+ */
 public class SaverEventHandler {
 
     // Regex pattern matching any messages from players that say "!save"
@@ -53,6 +56,7 @@ public class SaverEventHandler {
 
     @SubscribeEvent
     public void onLoggedIn(FMLNetworkEvent.ClientConnectedToServerEvent event) {
+        // Check if the recent connection is to the Hypixel network.
         boolean singleplayer = Minecraft.getMinecraft().isSingleplayer();
         if(!singleplayer) {
             String ip = Minecraft.getMinecraft().getCurrentServerData().serverIP;
@@ -65,13 +69,17 @@ public class SaverEventHandler {
 
     @SubscribeEvent
     public void onLoggedOut(FMLNetworkEvent.ClientDisconnectionFromServerEvent event) {
+        // Turn off the mod and flag the client as not online hypixel
+        if(HousingSaver.onHypixel) System.out.println("Currently logging off Hypixel.");
+
         HousingSaver.onHypixel = false;
         HousingSaver.toggle = false;
-        System.out.println("Currently logging off Hypixel.");
     }
 
     @SubscribeEvent
-    public void onChatOpen(GuiScreenEvent.DrawScreenEvent.Post e) {
+    public void onGuiOpen(GuiScreenEvent.DrawScreenEvent.Post e) {
+        // When the chat is opened, if the mod is enabled, add text to
+        // the screen that says the mod is enabled.
         if(HousingSaver.toggle && HousingSaver.onHypixel && e.gui instanceof GuiChat) {
 
             // Draw text onto the chat window saying that Housing Saver is enabled.
