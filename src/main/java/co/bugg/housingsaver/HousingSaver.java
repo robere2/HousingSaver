@@ -1,5 +1,6 @@
 package co.bugg.housingsaver;
 
+import co.bugg.housingsaver.commands.LoadCommand;
 import co.bugg.housingsaver.commands.SaverToggleCommand;
 import co.bugg.housingsaver.util.PublicMessageBuffer;
 import co.bugg.housingsaver.util.json.JsonUtil;
@@ -39,5 +40,6 @@ public class HousingSaver {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         ClientCommandHandler.instance.registerCommand(new SaverToggleCommand());
+        ClientCommandHandler.instance.registerCommand(new LoadCommand());
     }
 }

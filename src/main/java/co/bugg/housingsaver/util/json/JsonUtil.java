@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 public class JsonUtil {
     private static final Gson gson = new Gson();
@@ -17,15 +18,14 @@ public class JsonUtil {
      * @param uuid Minecraft user ID, the file's name
      * @return Coordinate class containing the player's last save coordinates
      */
-    public static Coordinates read(String uuid) {
+    public static Coordinates read(UUID uuid) {
         // Parse the Json file into a string
         String json = null;
         try {
             json = Files.toString(new File(HousingSaver.fullPath + uuid + ".json"), Charsets.UTF_8);
-            System.out.println("Saving user " + uuid + "'s coordinates");
+            System.out.println("Reading user " + uuid + "'s coordinates");
         } catch (IOException e) {
-            String err = "Failed saving coordinates for " + uuid;
-            MessageBuilder.send(MessageBuilder.buildError(err));
+            String err = "Failed reading coordinates for " + uuid;
             System.out.println(err);
 
             e.printStackTrace();
