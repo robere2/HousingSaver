@@ -1,7 +1,6 @@
 package co.bugg.housingsaver;
 
 import co.bugg.housingsaver.util.MessageBuilder;
-import co.bugg.housingsaver.util.PublicMessageBuffer;
 import co.bugg.housingsaver.util.json.JsonUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
