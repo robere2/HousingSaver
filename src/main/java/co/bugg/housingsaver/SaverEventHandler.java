@@ -55,7 +55,6 @@ public class SaverEventHandler {
     @SubscribeEvent
     public void onLoggedIn(FMLNetworkEvent.ClientConnectedToServerEvent event) {
         boolean singleplayer = Minecraft.getMinecraft().isSingleplayer();
-        HousingSaver.onHypixel = true;
         if(!singleplayer) {
             String ip = Minecraft.getMinecraft().getCurrentServerData().serverIP;
             if (ip.contains(".hypixel.net")) {
