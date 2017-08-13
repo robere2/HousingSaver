@@ -8,6 +8,7 @@ Please keep in mind that at the moment, users must /msg the user running the Min
 * Manually save players positions via command
 * Double check your location before responding to save requests
 * Toggleable timed announcements, reminding users they can do !save
+* Have a !save cooldown
 
 ### Download
 You can download the mod here:
