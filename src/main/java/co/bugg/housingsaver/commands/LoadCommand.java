@@ -4,7 +4,6 @@ import co.bugg.housingsaver.HousingSaver;
 import co.bugg.housingsaver.util.MessageBuilder;
 import co.bugg.housingsaver.util.json.Coordinates;
 import co.bugg.housingsaver.util.json.JsonUtil;
-import com.google.gson.Gson;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
@@ -13,12 +12,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import static net.minecraft.client.Minecraft.getMinecraft;
 
+/**
+ * In-game slash command that loads user save data
+ */
 public class LoadCommand implements ICommand {
     @Override
     public String getCommandName() {

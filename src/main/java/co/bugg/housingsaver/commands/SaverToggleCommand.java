@@ -11,6 +11,9 @@ import net.minecraft.util.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * In-game slash command that toggles the mod on or off.
+ */
 public class SaverToggleCommand implements ICommand {
 
     @Override
