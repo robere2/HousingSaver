@@ -1,6 +1,7 @@
 package co.bugg.housingsaver.util;
 
 import co.bugg.housingsaver.HousingSaver;
+import co.bugg.housingsaver.config.SaverConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -16,7 +17,7 @@ public class PublicMessageBuffer {
     // Multiplied by 2 because for some reason
     // 1 second is 40 ticks and I haven't been
     // able to figure it out.
-    public int tickDelay = 20 * 2;
+    public int tickDelay = SaverConfig.messageTick * 2;
     // How many ticks have gone by
     public int tickCount = 0;
 

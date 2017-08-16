@@ -1,5 +1,6 @@
 package co.bugg.housingsaver;
 
+import co.bugg.housingsaver.config.SaverConfig;
 import co.bugg.housingsaver.util.MessageBuilder;
 import co.bugg.housingsaver.util.json.JsonUtil;
 import net.minecraft.client.Minecraft;
@@ -8,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
@@ -20,7 +22,7 @@ import java.util.regex.Pattern;
 public class SaverEventHandler {
 
     // Regex pattern matching any messages from players that say "!save"
-    private static final Pattern pattern = Pattern.compile("^From (?:\\[[A-Z+]*] )?([A-Za-z0-9_]{1,16}): !save$");
+    private static final Pattern pattern = Pattern.compile(SaverConfig.saveRegex);
 
     @SubscribeEvent
     public void onChatReceivedEvent(ClientChatReceivedEvent event) {
@@ -60,7 +62,7 @@ public class SaverEventHandler {
         boolean singleplayer = Minecraft.getMinecraft().isSingleplayer();
         if(!singleplayer) {
             String ip = Minecraft.getMinecraft().getCurrentServerData().serverIP;
-            if (ip.contains(".hypixel.net")) {
+            if (ip.contains(SaverConfig.ipMatch)) {
                 HousingSaver.onHypixel = true;
                 System.out.println("Currently on Hypixel!");
             }
@@ -91,6 +93,13 @@ public class SaverEventHandler {
                     0xA4F442);
 
 
+        }
+    }
+
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+        if(event.modID.equals(Reference.MOD_ID)) {
+            SaverConfig.sync();
         }
     }
 }
