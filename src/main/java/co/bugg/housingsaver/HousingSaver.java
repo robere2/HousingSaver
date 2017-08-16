@@ -29,6 +29,8 @@ public class HousingSaver {
     public static final String path = "housingsaver/";
     // Path to the directory for this instance of Minecraft (corresponds to the user's UUID)
     public static final String fullPath = path + EntityPlayer.getUUID(Minecraft.getMinecraft().getSession().getProfile()) + "/";
+    // Username of the player running the mod
+    public static final String master = Minecraft.getMinecraft().getSession().getUsername();
 
     public static PublicMessageBuffer buffer;
 
