@@ -10,6 +10,6 @@ import net.minecraftforge.fml.client.config.GuiConfig;
 public class ConfigGui extends GuiConfig {
     public ConfigGui(GuiScreen screen) {
         super(screen, new ConfigElement(HousingSaver.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
-                Reference.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(HousingSaver.config.toString()));
+                Reference.MOD_ID, false, true, GuiConfig.getAbridgedConfigPath(HousingSaver.config.toString()));
     }
 }
